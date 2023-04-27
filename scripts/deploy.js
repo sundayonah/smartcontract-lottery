@@ -16,7 +16,6 @@ async function main() {
   const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
 
   await lock.deployed();
-
   console.log(
     `Lock with ${ethers.utils.formatEther(
       lockedAmount

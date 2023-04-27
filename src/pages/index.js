@@ -1,10 +1,10 @@
-import Image from "next/image"
-import { Inter } from "next/font/google"
-import { Header } from "@/component/Header"
-import { MainHeader } from "@/component/MainHeader"
+import React from "react"
+import { MainHeader } from "../component/MainHeader"
+// import { LotteryEntrance } from "../component/MainHeader"
+// import { Header } from "@/component/Header"
 import { LotteryEntrance } from "@/component/LotteryEntrance"
 
-const inter = Inter({ subsets: ["latin"] })
+// const inter = Inter({ subsets: ["latin"] })
 
 export default function Home() {
     return (
