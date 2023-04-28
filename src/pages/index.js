@@ -1,8 +1,8 @@
 import React from "react"
-import { MainHeader } from "../component/MainHeader"
+import { MainHeader } from "../components/MainHeader"
 // import { LotteryEntrance } from "../component/MainHeader"
 // import { Header } from "@/component/Header"
-import { LotteryEntrance } from "@/component/LotteryEntrance"
+import { LotteryEntrance } from "@/components/LotteryEntrance"
 
 // const inter = Inter({ subsets: ["latin"] })
 

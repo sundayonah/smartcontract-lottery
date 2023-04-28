@@ -20,7 +20,7 @@ export const LotteryEntrance = () => {
     // const raffleAddress =
     //     !isNaN(chainId) && chainId in contractAddresses
     //         ? contractAddresses[chainId][0]
-    //         : null   
+    //         : null
 
     // const raffleAddress = (contractAddresses[chainId] || [])[0]
 
@@ -154,7 +154,7 @@ export const LotteryEntrance = () => {
                         )}
                     </button>
                     <div>
-                        Entrance Fee:
+                        Entrance Fee: {entranceFee}
                         {/* {ethers.utils.formatUnits(entranceFee, "ether")} ETH */}
                     </div>
                     <div>
