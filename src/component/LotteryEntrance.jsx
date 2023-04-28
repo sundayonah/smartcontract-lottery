@@ -6,6 +6,9 @@ import { ethers } from "ethers"
 import { contractAddresses, abi } from "../constants"
 
 export const LotteryEntrance = () => {
+    const [entranceFee, setEntranceFee] = useState("0")
+    const [numberOfPlayers, setNumberOfPlayers] = useState("0")
+    const [recentWinner, setRecentWinner] = useState("0")
     const { Moralis, isWeb3Enabled, chainId: chainIdHex } = useMoralis()
     const chainId = parseInt(chainIdHex)
     console.log(chainId)
@@ -17,7 +20,7 @@ export const LotteryEntrance = () => {
     // const raffleAddress =
     //     !isNaN(chainId) && chainId in contractAddresses
     //         ? contractAddresses[chainId][0]
-    //         : null
+    //         : null   
 
     // const raffleAddress = (contractAddresses[chainId] || [])[0]
 
@@ -32,9 +35,6 @@ export const LotteryEntrance = () => {
 
     // State hooks
     // https://stackoverflow.com/questions/58252454/react-hooks-using-usestate-vs-just-variables
-    const [entranceFee, setEntranceFee] = useState("0")
-    const [numberOfPlayers, setNumberOfPlayers] = useState("0")
-    const [recentWinner, setRecentWinner] = useState("0")
 
     const dispatch = useNotification()
 
@@ -82,7 +82,7 @@ export const LotteryEntrance = () => {
         //     ...options,
         // })
         const entranceFeeFromCall = await getEntranceFee()
-        const numPlayersFromCall = (await getPlayersNumber())
+        const numPlayersFromCall = await getPlayersNumber()
         const recentWinnerFromCall = await getRecentWinner()
         setEntranceFee(entranceFeeFromCall)
         setNumberOfPlayers(numPlayersFromCall)
