@@ -3,15 +3,16 @@ import { useMoralis, useWeb3Contract } from "react-moralis"
 import { useEffect, useState } from "react"
 import { useNotification } from "web3uikit"
 import { ethers } from "ethers"
-import { abi } from "../constants"
+import abi from "../constants/abi.json"
 import { contractAddresses } from "../constants/contractAddress"
 
 export const LotteryEntrance = () => {
-    const [entranceFee, setEntranceFee] = useState("0")
+    const [entranceFee, setEntranceFee] = useState("0.1")
     const [numberOfPlayers, setNumberOfPlayers] = useState("0")
     const [recentWinner, setRecentWinner] = useState("0")
     const { Moralis, isWeb3Enabled, chainId: chainIdHex } = useMoralis()
     const chainId = parseInt(chainIdHex)
+
     // console.log(chainId)
 
     // console.log(contractAddresses)
@@ -32,7 +33,7 @@ export const LotteryEntrance = () => {
             ? contractAddresses[chainId][0]
             : null
 
-    // console.log(raffleAddress)
+    // console.log(abi)
 
     // // console.log(`ChainId is ${chainId}`)
 
@@ -50,7 +51,7 @@ export const LotteryEntrance = () => {
         isFetching,
     } = useWeb3Contract({
         abi: abi,
-        contractAddress: contractAddresses,
+        contractAddress: raffleAddress,
         functionName: "enterRaffle",
         msgValue: entranceFee,
         params: {},
@@ -60,7 +61,7 @@ export const LotteryEntrance = () => {
 
     const { runContractFunction: getEntranceFee } = useWeb3Contract({
         abi: abi,
-        contractAddress: contractAddresses, // specify the networkId
+        contractAddress: raffleAddress, // specify the networkId
         functionName: "getEntranceFee",
         params: {},
     })
