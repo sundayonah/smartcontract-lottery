@@ -3,7 +3,8 @@ import { useMoralis, useWeb3Contract } from "react-moralis"
 import { useEffect, useState } from "react"
 import { useNotification } from "web3uikit"
 import { ethers } from "ethers"
-import { contractAddresses, abi } from "../constants"
+import { abi } from "../constants"
+import { contractAddresses } from "../constants/contractAddress"
 
 export const LotteryEntrance = () => {
     const [entranceFee, setEntranceFee] = useState("0")
@@ -11,7 +12,9 @@ export const LotteryEntrance = () => {
     const [recentWinner, setRecentWinner] = useState("0")
     const { Moralis, isWeb3Enabled, chainId: chainIdHex } = useMoralis()
     const chainId = parseInt(chainIdHex)
-    console.log(chainId)
+    // console.log(chainId)
+
+    // console.log(contractAddresses)
 
     // console.log(`ChainId is ${chainId}`)
     // const raffleAddress =
@@ -29,6 +32,8 @@ export const LotteryEntrance = () => {
             ? contractAddresses[chainId][0]
             : null
 
+    // console.log(raffleAddress)
+
     // // console.log(`ChainId is ${chainId}`)
 
     // console.log(raffleAddress)
@@ -45,7 +50,7 @@ export const LotteryEntrance = () => {
         isFetching,
     } = useWeb3Contract({
         abi: abi,
-        contractAddress: raffleAddress,
+        contractAddress: contractAddresses,
         functionName: "enterRaffle",
         msgValue: entranceFee,
         params: {},
@@ -55,7 +60,7 @@ export const LotteryEntrance = () => {
 
     const { runContractFunction: getEntranceFee } = useWeb3Contract({
         abi: abi,
-        contractAddress: raffleAddress, // specify the networkId
+        contractAddress: contractAddresses, // specify the networkId
         functionName: "getEntranceFee",
         params: {},
     })
@@ -133,7 +138,7 @@ export const LotteryEntrance = () => {
     return (
         <div className="p-5">
             <h1 className="py-4 px-4 font-bold text-3xl">Lottery</h1>
-            {!raffleAddress ? (
+            {raffleAddress ? (
                 <>
                     <button
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-auto"
